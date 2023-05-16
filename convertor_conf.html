@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Config_SMTP_server
+    </title>
+    <script>
+    function sendConfig() {
+        const db_name = document.getElementById('db_name').value;
+        const db_user = document.getElementById('db_user').value;
+        const db_password = document.getElementById('db_password').value;
+        const db_host = document.getElementById('db_host').value;
+        const db_port = document.getElementById('db_port').value;
+        const tb_name = document.getElementById('tb_name').value;
+        const tb_column_tag = document.getElementById('tb_column_tag').value;
+        const tb_column_id_tag = document.getElementById('tb_column_id_tag').value;
+        const tb_insert_id_tag = document.getElementById('tb_insert_id_tag').value;
+        const tb_insert_value = document.getElementById('tb_insert_value').value;
+        const tb_insert_timestamp = document.getElementById('tb_insert_timestamp').value;
+        const data_to_alpha = document.getElementById('data_to_alpha').value;
+        const alpha_column_tag = document.getElementById('alpha_column_tag').value;
+        const alpha_column_value = document.getElementById('alpha_column_value').value;
+        const opc_master_host = document.getElementById('opc_master_host').value;
+        const opc_slave_host = document.getElementById('opc_slave_host').value;
+        const rate_5_min_cl_table = document.getElementById('rate_5_min_cl_table').value;
+        const rate_5_min_cl_rate = document.getElementById('rate_5_min_cl_rate').value;
+        const rate_1_hour_cl_table = document.getElementById('rate_1_hour_cl_table').value;
+        const rate_1_hour_cl_rate = document.getElementById('rate_1_hour_cl_rate').value;
+        const rate_1_day_cl_table = document.getElementById('rate_1_day_cl_table').value;
+        const rate_1_day_cl_rate = document.getElementById('rate_1_day_cl_rate').value;
+        const cl_value_volumn = document.getElementById('cl_value_volumn').value;
+        const cl_column_tag = document.getElementById('cl_column_tag').value;
+        const rate_data_to_alpha = document.getElementById('rate_data_to_alpha').value;
+        const time_zone = document.getElementById('time_zone').value;
+        const path_log_file = document.getElementById('path_log_file').value;
+
+        // Проверяем, что порт является положительным числом
+
+
+        var data = {    
+            "db_name": db_name,
+            "db_user": db_user,
+            "db_password": db_password,
+            "db_host": db_host,
+            "db_port": db_port,
+            "tb_name": tb_name,
+            "tb_column_tag": tb_column_tag,
+            "tb_column_id_tag": tb_column_id_tag,
+            "tb_insert_id_tag": tb_insert_id_tag,
+            "tb_insert_value": tb_insert_value,
+            "tb_insert_timestamp": tb_insert_timestamp,
+            "data_to_alpha": data_to_alpha,
+            "alpha_column_tag": alpha_column_tag,
+            "alpha_column_value": alpha_column_value,
+            "opc_master_host": opc_master_host,
+            "opc_slave_host": opc_slave_host,
+            "rate_5_min_cl_table": rate_5_min_cl_table,
+            "rate_5_min_cl_rate": rate_5_min_cl_rate,
+            "rate_1_hour_cl_table": rate_1_hour_cl_table,
+            "rate_1_hour_cl_rate": rate_1_hour_cl_rate,
+            "rate_1_day_cl_table": rate_1_day_cl_table,
+            "rate_1_day_cl_rate": rate_1_day_cl_rate,
+            "cl_value_volumn": cl_value_volumn,
+            "cl_column_tag": cl_column_tag,
+            "rate_data_to_alpha": rate_data_to_alpha,
+            "time_zone": time_zone,
+            "path_log_file": path_log_file
+        };
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', "http://127.0.0.1:5002/conf_convertor", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            alert(response.message); // Выводим сообщение из ответа
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    }
+    </script>
+  </head>
+  <body>
+    <h1>Configure your settings</h1>
+    <form>
+        <label for="db_name">Database name:</label>
+        <input type="text" id="db_name" name="db_name"><br>
+        
+        <label for="db_user">Database username:</label>
+        <input type="text" id="db_user" name="db_user"><br>
+        
+        <label for="db_password">Database password:</label>
+        <input type="text" id="db_password" name="db_password"><br>
+        
+        <label for="db_host">Database host:</label>
+        <input type="text" id="db_host" name="db_host"><br>
+        
+        <label for="db_port">Database port:</label>
+        <input type="text" id="db_port" name="db_port"><br>
+        
+        <label for="tb_name">Table name:</label>
+        <input type="text" id="tb_name" name="tb_name"><br>
+        
+        <label for="tb_column_tag">Table column tag:</label>
+        <input type="text" id="tb_column_tag" name="tb_column_tag"><br>
+        
+        <label for="tb_column_id_tag">Table column ID tag:</label>
+        <input type="text" id="tb_column_id_tag" name="tb_column_id_tag"><br>
+        
+        <label for="tb_insert_id_tag">Table insert ID tag:</label>
+        <input type="text" id="tb_insert_id_tag" name="tb_insert_id_tag"><br>
+        
+        <label for="tb_insert_value">Table insert value:</label>
+        <input type="text" id="tb_insert_value" name="tb_insert_value"><br>
+        
+        <label for="tb_insert_timestamp">Table insert timestamp:</label>
+        <input type="text" id="tb_insert_timestamp" name="tb_insert_timestamp"><br>
+        
+        <label for="data_to_alpha">Data to alpha:</label>
+        <input type="text" id="data_to_alpha" name="data_to_alpha"><br>
+        
+        <label for="alpha_column_tag">Alpha column tag:</label>
+        <input type="text" id="alpha_column_tag" name="alpha_column_tag"><br>
+        
+        <label for="alpha_column_value">Alpha column value:</label>
+        <input type="text" id="alpha_column_value" name="alpha_column_value"><br>
+        
+        <label for="opc_master_host">OPC master host:</label>
+        <input type="text" id="opc_master_host" name="opc_master_host"><br>
+        
+        <label for="opc_slave_host">OPC slave host:</label>
+        <input type="text" id="opc_slave_host" name="opc_slave_host"><br>
+        
+        <label for="rate_5_min_cl_table">5 minute rate CL table:</label>
+        <input type="text" id="rate_5_min_cl_table" name="rate_5_min_cl_table"><br>
+        
+        <label for="rate_5_min_cl_rate">5 minute rate CL rate:</label>
+        <input type="text" id="rate_5_min_cl_rate" name="rate_5_min_cl_rate"><br>
+        
+        <label for="rate_1_hour_cl_table">1 hour rate CL table:</label>
+        <input type="text" id="rate_1_hour_cl_table" name="rate_1_hour_cl_table"><br>
+        
+        <label for="rate_1_hour_cl_rate">1 hour rate CL rate:</label>
+        <input type="text" id="rate_1_hour_cl_rate" name="rate_1_hour_cl_rate"><br>
+        
+        <label for="rate_1_day_cl_table">1 day rate CL table:</label>
+        <input type="text" id="rate_1_day_cl_table" name="rate_1_day_cl_table"><br>
+
+        <label for="rate_1_day_cl_rate">rate 1 day cl rate:</label>
+        <input type="text" id="rate_1_day_cl_rate" name="rate_1_day_cl_rate"><br>
+        
+        <label for="cl_value_volumn">cl value volumn:</label>
+        <input type="text" id="cl_value_volumn" name="cl_value_volumn"><br>
+        
+        <label for="cl_column_tag">cl column tag:</label>
+        <input type="text" id="cl_column_tag" name="cl_column_tag"><br>
+        
+        <label for="rate_data_to_alpha">rate data toalpha:</label>
+        <input type="text" id="rate_data_to_alpha" name="rate_data_to_alpha"><br>
+        
+        <label for="time_zone">time zone:</label>
+        <input type="text" id="time_zone" name="time_zone"><br>
+        
+        <label for="path_log_file">path log file:</label>
+        <input type="text" id="path_log_file" name="path_log_file"><br>
+
+        
+      <button type="button" onclick="sendConfig()">Save</button>
+    </form>
+    <div id="response"></div>
+  </body>
+  <br>
+
+</html>
